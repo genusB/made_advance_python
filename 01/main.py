@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt, isclose
 
 
 def solve_equation(a, b, c):
@@ -25,7 +25,8 @@ def split_numbers(arr):
 def solve_equation_test():
     assert solve_equation(1, 2, -3) == (1, -3)
     assert solve_equation(1, -10, 21) == (7, 3)
-    assert solve_equation(3, -14, -5) == (5, -0.3333333333333333)
+    solution = solve_equation(3, -14, -5)
+    assert solution[0] == 5 and isclose(solution[1], -1/3)
     assert solve_equation(3, -18, 27) == 3
     assert solve_equation(2, -20, 100) is None
 
@@ -38,6 +39,7 @@ def split_numbers_test():
 
 solve_equation_test()
 split_numbers_test()
+
 
 
 

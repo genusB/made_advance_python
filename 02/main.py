@@ -20,8 +20,7 @@ def merge(sequence1, sequence2):
 def test_closest_to_zero():
     assert closest_to_zero([-1, 2, -5, 1, -1]) == [-1, 1, -1]
     assert closest_to_zero([-5, 9, 6, -8]) == [-5]
-    assert closest_to_zero([]) == []
-    assert closest_to_zero([0]) == [0]
+    assert not closest_to_zero([])
 
 
 def test_merge():

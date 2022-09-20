@@ -28,13 +28,21 @@ def test_merge():
     seq2 = (1, 1, 2, 3, 4, 7)
     assert merge(seq1, seq2) == [1, 2, 7]
 
-    seq1 = [1, 2, 3]
-    seq2 = [4, 5, 6]
-    assert merge(seq1, seq2) == []
-
     seq1 = [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4]
     seq2 = (1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4)
     assert merge(seq1, seq2) == [1, 2, 3, 4]
+
+    seq1 = [1, 2, 3]
+    seq2 = [4, 5, 6]
+    assert not merge(seq1, seq2)
+
+    seq1 = []
+    seq2 = [1, 2, 3]
+    assert not merge(seq1, seq2)
+
+    seq1 = []
+    seq2 = []
+    assert not merge(seq1, seq2)
 
 
 test_closest_to_zero()

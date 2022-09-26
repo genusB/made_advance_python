@@ -34,9 +34,3 @@ class CustomList(list):
 
     def __radd__(self, other):
         return self + CustomList(other)
-
-
-
-
-
-

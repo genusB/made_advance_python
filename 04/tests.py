@@ -63,5 +63,3 @@ def custom_list_test():
 
 
 custom_list_test()
-
-

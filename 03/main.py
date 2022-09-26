@@ -19,7 +19,7 @@ def mean(k=1):
             start = time.process_time()
             for i in range(k):
                 func(*args, **kwargs)
-            print(time.process_time() - start)
+            return time.process_time() - start
         return wrapper
     return _mean
 
@@ -38,8 +38,8 @@ def test_func_with_args(arr):
 json_str = '{"key1": "Word1 word2", "key2": "word2 word3"}'
 parse_json(json_str, ['key1'], ['word2'], print)
 
-test_func_without_args()
-test_func_with_args([i for i in range(100)])
+print(test_func_without_args())
+print(test_func_with_args([i for i in range(100)]))
 
 
 

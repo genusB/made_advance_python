@@ -24,6 +24,17 @@ def mean(k=1):
     return _mean
 
 
+def statistic(keyword):
+    counter = stat_dict.get(keyword, 0)
+    stat_dict[keyword] = counter + 1
+
+
+json_str = '{"key1": "Word1 word2", "key2": "word2 word3"}'
+parse_json(json_str, ["key1", "key2"], ["word2", "word3"], statistic)
+stat_dict = {}
+assert stat_dict == {'word2': 2, 'word3': 1}
+
+
 @mean(10000)
 def test_func_without_args():
     pass
@@ -35,11 +46,11 @@ def test_func_with_args(arr):
         pass
 
 
-json_str = '{"key1": "Word1 word2", "key2": "word2 word3"}'
-parse_json(json_str, ['key1'], ['word2'], print)
-
 print(test_func_without_args())
 print(test_func_with_args([i for i in range(100)]))
+
+
+
 
 
 

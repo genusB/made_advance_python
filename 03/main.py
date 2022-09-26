@@ -24,16 +24,21 @@ def mean(k=1):
     return _mean
 
 
-def statistic(keyword):
-    counter = stat_dict.get(keyword, 0)
-    stat_dict[keyword] = counter + 1
 
 
-json_str = '{"key1": "Word1 word2", "key2": "word2 word3"}'
-parse_json(json_str, ["key1", "key2"], ["word2", "word3"], statistic)
-stat_dict = {}
-assert stat_dict == {'word2': 2, 'word3': 1}
+def parse_json_test():
+    stat = {}
+    def statistic_callback(keyword):
+        counter = stat.get(keyword, 0)
+        stat[keyword] = counter + 1
 
+    json_str = '{"key1": "Word1 word2", "key2": "word2 word3"}'
+    parse_json(json_str, ["key1", "key2"], ["word2", "word3"], statistic_callback)
+
+    assert stat == {'word2': 2, 'word3': 1}
+
+    
+parse_json_test()
 
 @mean(10000)
 def test_func_without_args():

@@ -2,6 +2,21 @@ class CustomList(list):
     def __eq__(self, other):
         return len(self) == len(other)
 
+    def __ne__(self, other):
+        return len(self) != len(other)
+
+    def __lt__(self, other):
+        return len(self) < len(other)
+
+    def __le__(self, other):
+        return len(self) <= len(other)
+
+    def __gt__(self, other):
+        return len(self) > len(other)
+
+    def __ge__(self, other):
+        return len(self) >= len(other)
+
     def __str__(self):
         if len(self) == 0:
             return "0"

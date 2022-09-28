@@ -8,7 +8,7 @@ def parse_json(json_str: str, required_fields=None, keywords=None, keyword_callb
     for key in json_doc:
         if required_fields and keywords and key in required_fields:
             for keyword in keywords:
-                if keyword in json_doc[key]:
+                if keyword in json_doc[key].split():
                     keyword_callback(keyword)
 
 
@@ -24,8 +24,6 @@ def mean(k=1):
     return _mean
 
 
-
-
 def parse_json_test():
     stat = {}
     def statistic_callback(keyword):
@@ -37,7 +35,19 @@ def parse_json_test():
 
     assert stat == {'word2': 2, 'word3': 1}
 
-    
+    stat = {}
+    json_str = '{"key1": "Word1 word2less", "key2": "word2 word3"}'
+    parse_json(json_str, ["key1", "key2"], ["word1", "word2"], statistic_callback)
+
+    assert stat == {'word2': 1}
+
+    stat = {}
+    json_str = '{"key1": "Word1 word2less", "key2": "word2 word3"}'
+    parse_json(json_str, ["key1", "key2"], ["word1", "word22"], statistic_callback)
+
+    assert not stat
+
+
 parse_json_test()
 
 @mean(10000)

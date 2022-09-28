@@ -11,6 +11,23 @@ def custom_list_test():
     assert not custom_list1 == custom_list3
     assert not custom_list1 == custom_empty_list
 
+    assert custom_list1 != custom_list3
+    assert not custom_list1 != custom_list2
+
+    assert custom_list1 >= custom_list2
+    assert custom_list3 >= custom_list2
+    assert not custom_list2 >= custom_list3
+
+    assert custom_list3 > custom_list2
+    assert not custom_list2 > custom_list3
+
+    assert custom_list1 <= custom_list2
+    assert custom_list2 <= custom_list3
+    assert not custom_list3 <= custom_list2
+
+    assert custom_list2 < custom_list3
+    assert not custom_list3 < custom_list2
+
     assert str(custom_list1) == "1 2 3 6"
     assert str(custom_empty_list) == "0"
 

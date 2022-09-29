@@ -24,7 +24,7 @@ def mean(k=1):
             time_of_last_calls.append(delta)
 
             if len(time_of_last_calls) >= k:
-                return res, sum(time_of_last_calls[-k:]) / k
+                print(sum(time_of_last_calls[-k:]) / k)
             return res
 
         return wrapper
@@ -76,7 +76,7 @@ def test_func_with_args(arr):
 
 
 for i in range(15):
-    print(test_func_pass())
+    test_func_pass()
 
 for i in range(15):
     print(test_func_without_args())

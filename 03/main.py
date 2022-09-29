@@ -13,19 +13,28 @@ def parse_json(json_str: str, required_fields=None, keywords=None, keyword_callb
 
 
 def mean(k=1):
+    time_of_last_calls = []
+
     def _mean(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             start = time.process_time()
-            for i in range(k):
-                func(*args, **kwargs)
-            return time.process_time() - start
+            res = func(*args, **kwargs)
+            delta = time.process_time() - start
+            time_of_last_calls.append(delta)
+
+            if len(time_of_last_calls) >= k:
+                return res, sum(time_of_last_calls[-k:]) / k
+            return res
+
         return wrapper
+
     return _mean
 
 
 def parse_json_test():
     stat = {}
+
     def statistic_callback(keyword):
         counter = stat.get(keyword, 0)
         stat[keyword] = counter + 1
@@ -50,24 +59,29 @@ def parse_json_test():
 
 parse_json_test()
 
-@mean(10000)
-def test_func_without_args():
+
+@mean(2)
+def test_func_pass():
     pass
 
 
-@mean(10000)
+@mean(10)
+def test_func_without_args():
+    return 1
+
+
+@mean(10)
 def test_func_with_args(arr):
-    for i in arr:
-        pass
+    return sum(arr)
 
 
-print(test_func_without_args())
-print(test_func_with_args([i for i in range(100)]))
+for i in range(15):
+    print(test_func_pass())
 
+for i in range(15):
+    print(test_func_without_args())
 
-
-
-
-
+for i in range(15):
+    print(test_func_with_args([i for i in range(100)]))
 
 

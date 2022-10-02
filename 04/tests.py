@@ -1,6 +1,13 @@
 from custom_list import CustomList
 
 
+def check_equality(list1, list2):
+    for i in range(len(list1)):
+        if list1[i] != list2[i]:
+            return False
+
+    return True
+
 def custom_list_test():
     custom_list1 = CustomList([1, 2, 3])
     custom_list2 = CustomList([3, 2, 1])
@@ -37,11 +44,12 @@ def custom_list_test():
     sub_of_unequal_len3 = custom_list1 - custom_empty_list
     sub_of_unequal_len4 = custom_empty_list - custom_list1
 
-    assert isinstance(sub_of_equal_len, CustomList) and sub_of_equal_len == [2, 0, -2]
-    assert isinstance(sub_of_unequal_len1, CustomList) and sub_of_unequal_len1 == [4, 4, 4, 8]
-    assert isinstance(sub_of_unequal_len2, CustomList) and sub_of_unequal_len2 == [-4, -4, -4, -8]
-    assert isinstance(sub_of_unequal_len3, CustomList) and sub_of_unequal_len3 == [1, 2, 3]
-    assert isinstance(sub_of_unequal_len4, CustomList) and sub_of_unequal_len4 == [-1, -2, -3]
+    assert isinstance(sub_of_equal_len, CustomList) and check_equality(sub_of_equal_len, [2, 0, -2])
+    assert check_equality(custom_list1, [1, 2, 3]) and check_equality(custom_list2, [3, 2, 1])
+    assert isinstance(sub_of_unequal_len1, CustomList) and check_equality(sub_of_unequal_len1, [4, 4, 4, 8])
+    assert isinstance(sub_of_unequal_len2, CustomList) and check_equality(sub_of_unequal_len2, [-4, -4, -4, -8])
+    assert isinstance(sub_of_unequal_len3, CustomList) and check_equality(sub_of_unequal_len3, [1, 2, 3])
+    assert isinstance(sub_of_unequal_len4, CustomList) and check_equality(sub_of_unequal_len4, [-1, -2, -3])
 
     list1 = [5, 6, 7]
     list2 = [5, 6, 7, 8]
@@ -51,10 +59,11 @@ def custom_list_test():
     sub_of_unequal_len_with_list1 = custom_list1 - list2
     sub_of_unequal_len_with_list2 = list2 - custom_list1
 
-    assert isinstance(sub_of_equal_len_with_list1, CustomList) and sub_of_equal_len_with_list1 == [-4, -4, -4]
-    assert isinstance(sub_of_equal_len_with_list2, CustomList) and sub_of_equal_len_with_list2 == [4, 4, 4]
-    assert isinstance(sub_of_unequal_len_with_list1, CustomList) and sub_of_unequal_len_with_list1 == [-4, -4, -4, -8]
-    assert isinstance(sub_of_unequal_len_with_list2, CustomList) and sub_of_unequal_len_with_list2 == [4, 4, 4, 8]
+    assert isinstance(sub_of_equal_len_with_list1, CustomList) and check_equality(sub_of_equal_len_with_list1, [-4, -4, -4])
+    assert check_equality(custom_list1, [1, 2, 3]) and check_equality(list1, [5, 6, 7])
+    assert isinstance(sub_of_equal_len_with_list2, CustomList) and check_equality(sub_of_equal_len_with_list2, [4, 4, 4])
+    assert isinstance(sub_of_unequal_len_with_list1, CustomList) and check_equality(sub_of_unequal_len_with_list1, [-4, -4, -4, -8])
+    assert isinstance(sub_of_unequal_len_with_list2, CustomList) and check_equality(sub_of_unequal_len_with_list2, [4, 4, 4, 8])
 
     add_of_equal_len1 = custom_list2 + custom_list1
     add_of_equal_len2 = custom_list1 + custom_list2
@@ -62,11 +71,12 @@ def custom_list_test():
     add_of_unequal_len2 = custom_list1 + custom_list3
     add_of_unequal_len3 = custom_list1 + custom_empty_list
 
-    assert isinstance(add_of_equal_len1, CustomList) and add_of_equal_len1 == [4, 4, 4]
-    assert isinstance(add_of_equal_len2, CustomList) and add_of_equal_len2 == [4, 4, 4]
-    assert isinstance(add_of_unequal_len1, CustomList) and add_of_unequal_len1 == [6, 8, 10, 8]
-    assert isinstance(add_of_unequal_len2, CustomList) and add_of_unequal_len2 == [6, 8, 10, 8]
-    assert isinstance(add_of_unequal_len3, CustomList) and add_of_unequal_len3 == [1, 2, 3]
+    assert isinstance(add_of_equal_len1, CustomList) and check_equality(add_of_equal_len1, [4, 4, 4])
+    assert check_equality(custom_list1, [1, 2, 3]) and check_equality(custom_list2, [3, 2, 1])
+    assert isinstance(add_of_equal_len2, CustomList) and check_equality(add_of_equal_len2, [4, 4, 4])
+    assert isinstance(add_of_unequal_len1, CustomList) and check_equality(add_of_unequal_len1, [6, 8, 10, 8])
+    assert isinstance(add_of_unequal_len2, CustomList) and check_equality(add_of_unequal_len2, [6, 8, 10, 8])
+    assert isinstance(add_of_unequal_len3, CustomList) and check_equality(add_of_unequal_len3, [1, 2, 3])
 
     add_of_equal_len_with_list1 = custom_list1 + list1
     add_of_equal_len_with_list2 = list1 + custom_list1
@@ -74,9 +84,10 @@ def custom_list_test():
     add_of_unequal_len_with_list2 = list2 + custom_list1
 
     assert isinstance(add_of_equal_len_with_list1, CustomList) and add_of_equal_len_with_list1 == [6, 8, 10]
-    assert isinstance(add_of_equal_len_with_list2, CustomList) and add_of_equal_len_with_list2 == [6, 8, 10]
-    assert isinstance(add_of_unequal_len_with_list1, CustomList) and add_of_unequal_len_with_list1 == [6, 8, 10, 8]
-    assert isinstance(add_of_unequal_len_with_list2, CustomList) and add_of_unequal_len_with_list2 == [6, 8, 10, 8]
+    assert check_equality(custom_list1, [1, 2, 3]) and check_equality(list1, [5, 6, 7])
+    assert isinstance(add_of_equal_len_with_list2, CustomList) and check_equality(add_of_equal_len_with_list2, [6, 8, 10])
+    assert isinstance(add_of_unequal_len_with_list1, CustomList) and check_equality(add_of_unequal_len_with_list1, [6, 8, 10, 8])
+    assert isinstance(add_of_unequal_len_with_list2, CustomList) and check_equality(add_of_unequal_len_with_list2, [6, 8, 10, 8])
 
 
 custom_list_test()

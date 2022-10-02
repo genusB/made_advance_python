@@ -8,6 +8,7 @@ def check_equality(list1, list2):
 
     return True
 
+
 def custom_list_test():
     custom_list1 = CustomList([1, 2, 3])
     custom_list2 = CustomList([3, 2, 1])

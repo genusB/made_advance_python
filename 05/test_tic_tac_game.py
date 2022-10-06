@@ -249,5 +249,6 @@ class TestTicTacGame(unittest.TestCase):
         mock_print.assert_called_with('Draw!')
         self.assertEqual(self.game.moves, 9)
 
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,7 +1,7 @@
 import typing
 
 
-def search_in_file(file: typing.TextIO, keywords: list[str]):
+def search_in_file(file: typing.TextIO, keywords: list[str]) -> typing.Iterator[str]:
     for line in file.readlines():
         line = line.strip()
         modified_line = line.lower().replace(".", "").replace(",", "")

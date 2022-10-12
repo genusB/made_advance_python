@@ -14,38 +14,38 @@ class BaseWriter:
 
 
 class TxtReader(BaseReader):
-    def read(self, file) -> list[str]:
+    def read(self, file: typing.TextIO) -> list[str]:
         return file.readlines()
 
 
 class TxtWriter(BaseWriter):
-    def dump(self, data: typing.Union[str, list[str]], file):
+    def dump(self, data: typing.Union[str, list[str]], file: typing.BinaryIO):
         file.writelines(data)
 
 
 class JsonReader(BaseReader):
-    def read(self, file) -> json:
+    def read(self, file: typing.TextIO) -> dict:
         return json.load(file)
 
 
 class JsonWriter(BaseWriter):
-    def dump(self, data: dict, file):
+    def dump(self, data: dict, file: typing.BinaryIO):
         json.dump(data, file)
 
 
 class CsvReader(BaseReader):
-    def read(self, file) -> list[list[str]]:
+    def read(self, file: typing.TextIO) -> list[list[str]]:
         rows = [row for row in csv.reader(file)]
         return rows
 
 
 class CsvWriter(BaseWriter):
-    def dump(self, data: list[str], file):
+    def dump(self, data: list[str], file: typing.BinaryIO):
         writer = csv.writer(file)
         writer.writerows(data)
 
 
-def read_data(file, reader: BaseReader):
+def read_data(file, reader: BaseReader) -> any:
     return reader.read(file)
 
 
